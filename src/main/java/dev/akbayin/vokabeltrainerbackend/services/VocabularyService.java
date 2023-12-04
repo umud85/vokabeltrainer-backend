@@ -15,7 +15,7 @@ public class VocabularyService {
         this.vocabularyRepository = vocabularyRepository;
     }
 
-    public List<Vocabulary> getVocabularies() {
+    public List<Vocabulary> getAllVocabularies() {
         return vocabularyRepository.findAll();
     }
 }
