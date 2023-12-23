@@ -10,6 +10,16 @@ public class TransferVocabulary {
 
     private String[] germanVocabularies;
 
+    private int step;
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
+
     public UUID getId() {
         return id;
     }

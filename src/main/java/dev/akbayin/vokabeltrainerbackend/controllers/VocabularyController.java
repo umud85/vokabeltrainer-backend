@@ -20,6 +20,7 @@ public class VocabularyController {
         this.vocabularyService = vocabularyService;
     }
 
+    @CrossOrigin
     @GetMapping("all")
     public List<TransferVocabulary> getAllVocabularies() {
         return vocabularyService.getAllVocabularies().stream().map(
@@ -33,6 +34,7 @@ public class VocabularyController {
         ).collect(Collectors.toList());
     }
 
+    @CrossOrigin
     @GetMapping("{amountOfVocabularies}")
     public List<TransferVocabulary> getAmountOfVocabularies(@PathVariable int amountOfVocabularies) {
         List<Vocabulary> allVocabularies = vocabularyService.getAllVocabularies();
@@ -43,6 +45,7 @@ public class VocabularyController {
                     transferVocabulary.setId(UUID.randomUUID());
                     transferVocabulary.setEnglishVocabulary(vocRaw.getEnglishVocabulary());
                     transferVocabulary.setGermanVocabularies(vocRaw.getGermanVocabularies());
+                    transferVocabulary.setStep(0);
                     return transferVocabulary;
                 }
         ).collect(Collectors.toList());
