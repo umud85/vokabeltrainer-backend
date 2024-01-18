@@ -3,12 +3,11 @@ package dev.akbayin.vokabeltrainerbackend.controllers;
 import dev.akbayin.vokabeltrainerbackend.dto.TransferVocabulary;
 import dev.akbayin.vokabeltrainerbackend.models.Vocabulary;
 import dev.akbayin.vokabeltrainerbackend.services.VocabularyService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/vokabeln")
@@ -22,8 +21,13 @@ public class VocabularyController {
 
     @CrossOrigin
     @GetMapping("all")
-    public List<TransferVocabulary> getAllVocabularies() {
-        return vocabularyService.getAllVocabularies();
+    public ResponseEntity<List<TransferVocabulary>> getAllVocabularies() {
+        List<TransferVocabulary> vocabularies = vocabularyService.getAllVocabularies();
+        if (vocabularies == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(vocabularies);
+        }
     }
 
     @CrossOrigin
