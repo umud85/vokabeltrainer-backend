@@ -1,12 +1,16 @@
 package dev.akbayin.vokabeltrainerbackend.models;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "EnglishToGermanShort")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Vocabulary {
 
     @Id
@@ -20,9 +24,6 @@ public class Vocabulary {
 
     public ObjectId getId() {
         return id;
-    }
-
-    public Vocabulary() {
     }
 
     public String getEnglishVocabulary() {

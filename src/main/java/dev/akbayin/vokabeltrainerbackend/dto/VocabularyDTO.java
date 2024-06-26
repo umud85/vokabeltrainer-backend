@@ -1,8 +1,13 @@
 package dev.akbayin.vokabeltrainerbackend.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
-public class TransferVocabulary {
+@NoArgsConstructor
+@AllArgsConstructor
+public class VocabularyDTO {
 
     private UUID id;
 
@@ -22,9 +27,6 @@ public class TransferVocabulary {
 
     public UUID getId() {
         return id;
-    }
-
-    public TransferVocabulary() {
     }
 
     public void setId(UUID id) {

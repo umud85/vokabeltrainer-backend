@@ -1,7 +1,6 @@
 package dev.akbayin.vokabeltrainerbackend.controllers;
 
-import dev.akbayin.vokabeltrainerbackend.dto.TransferVocabulary;
-import dev.akbayin.vokabeltrainerbackend.models.Vocabulary;
+import dev.akbayin.vokabeltrainerbackend.dto.VocabularyDTO;
 import dev.akbayin.vokabeltrainerbackend.services.VocabularyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +20,8 @@ public class VocabularyController {
 
     @CrossOrigin
     @GetMapping("all")
-    public ResponseEntity<List<TransferVocabulary>> getAllVocabularies() {
-        List<TransferVocabulary> vocabularies = vocabularyService.getAllVocabularies();
+    public ResponseEntity<List<VocabularyDTO>> getAllVocabularies() {
+        List<VocabularyDTO> vocabularies = vocabularyService.getAllVocabularies();
         if (vocabularies == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
@@ -32,7 +31,7 @@ public class VocabularyController {
 
     @CrossOrigin
     @GetMapping("{amountOfVocabularies}")
-    public List<TransferVocabulary> getAmountOfVocabularies(@PathVariable int amountOfVocabularies) {
+    public List<VocabularyDTO> getAmountOfVocabularies(@PathVariable int amountOfVocabularies) {
         return vocabularyService.getAmountOfVocabularies(amountOfVocabularies);
     }
 }

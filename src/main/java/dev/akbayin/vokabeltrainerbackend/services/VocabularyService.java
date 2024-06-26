@@ -1,8 +1,10 @@
 package dev.akbayin.vokabeltrainerbackend.services;
 
-import dev.akbayin.vokabeltrainerbackend.dto.TransferVocabulary;
+import dev.akbayin.vokabeltrainerbackend.dto.VocabularyDTO;
 import dev.akbayin.vokabeltrainerbackend.models.Vocabulary;
 import dev.akbayin.vokabeltrainerbackend.repositories.VocabularyRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -19,30 +21,30 @@ public class VocabularyService {
         this.vocabularyRepository = vocabularyRepository;
     }
 
-    public List<TransferVocabulary> getAllVocabularies() {
+    public List<VocabularyDTO> getAllVocabularies() {
         return vocabularyRepository.findAll().stream().map(
                 vocRaw -> {
-                    TransferVocabulary transferVocabulary = new TransferVocabulary();
-                    transferVocabulary.setId(UUID.randomUUID());
-                    transferVocabulary.setEnglishVocabulary(vocRaw.getEnglishVocabulary());
-                    transferVocabulary.setGermanVocabularies(vocRaw.getGermanVocabularies());
-                    return transferVocabulary;
+                    VocabularyDTO vocabularyDTO = new VocabularyDTO();
+                    vocabularyDTO.setId(UUID.randomUUID());
+                    vocabularyDTO.setEnglishVocabulary(vocRaw.getEnglishVocabulary());
+                    vocabularyDTO.setGermanVocabularies(vocRaw.getGermanVocabularies());
+                    return vocabularyDTO;
                 }
         ).collect(Collectors.toList());
     }
 
-    public List<TransferVocabulary> getAmountOfVocabularies(int amountOfVocabularies) {
+    public List<VocabularyDTO> getAmountOfVocabularies(int amountOfVocabularies) {
         List<Vocabulary> allVocabularies = vocabularyRepository.findAll();
         Collections.shuffle(allVocabularies);
 
         return allVocabularies.subList(0, amountOfVocabularies).stream().map(
                 vocRaw -> {
-                    TransferVocabulary transferVocabulary = new TransferVocabulary();
-                    transferVocabulary.setId(UUID.randomUUID());
-                    transferVocabulary.setEnglishVocabulary(vocRaw.getEnglishVocabulary());
-                    transferVocabulary.setGermanVocabularies(vocRaw.getGermanVocabularies());
-                    transferVocabulary.setStep(0);
-                    return transferVocabulary;
+                    VocabularyDTO vocabularyDTO = new VocabularyDTO();
+                    vocabularyDTO.setId(UUID.randomUUID());
+                    vocabularyDTO.setEnglishVocabulary(vocRaw.getEnglishVocabulary());
+                    vocabularyDTO.setGermanVocabularies(vocRaw.getGermanVocabularies());
+                    vocabularyDTO.setStep(0);
+                    return vocabularyDTO;
                 }
         ).collect(Collectors.toList());
     }
