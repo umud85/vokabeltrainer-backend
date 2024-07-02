@@ -1,5 +1,6 @@
 package dev.akbayin.vokabeltrainerbackend.controllers;
 
+import dev.akbayin.vokabeltrainerbackend.dto.UserDTO;
 import dev.akbayin.vokabeltrainerbackend.models.User;
 import dev.akbayin.vokabeltrainerbackend.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,10 @@ public class UserController {
 
     @CrossOrigin
     @PostMapping("users/create")
-    public User createUser(User user) {
+    public User createUser(@RequestBody UserDTO userDTO) {
+        User user = new User();
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
         userService.createUser(user);
         return user;
     }
